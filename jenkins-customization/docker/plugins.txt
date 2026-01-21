@@ -1,0 +1,15 @@
+configuration-as-code
+job-dsl
+workflow-aggregator
+workflow-multibranch
+git
+github
+github-branch-source
+cloudbees-folder
+docker-plugin
+docker-workflow
+credentials
+credentials-binding
+pipeline-stage-view
+timestamper
+ansicolor
