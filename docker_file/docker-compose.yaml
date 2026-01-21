@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins_docker:v2
+    build:
+      context: ./
+    user: root
+    networks:
+      - ci-net
+    ports:
+      - "9090:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  sonar:
+    container_name: sonarqube
+    image: sonarqube:lts-community
+    networks:
+      - ci-net
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+
+volumes:
+  jenkins_home:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
+
+networks:
+  ci-net:
+    external: true
