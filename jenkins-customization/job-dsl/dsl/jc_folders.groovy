@@ -1,4 +1,4 @@
-def ROOT_FOLDER = "e_commerce_v2"
+def ROOT_FOLDER = "monorepo"
 def SERVICES_FOLDER = "services"
 
 // Jenkins에 Folder Item 생성
