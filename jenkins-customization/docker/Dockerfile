@@ -4,7 +4,7 @@ USER root
 
 ## Docker Install ##
 RUN apt-get update \
-&& apt-get intsall -y docker.io \
+&& apt-get install -y docker.io \
 && rm -rf /var/lib/apt/lists/*
 
 ## Basic Util Tools ##
@@ -14,8 +14,5 @@ git curl ca-certificates && rm -rf /var/lib/apt/lists/*
 ## Plugin Install ##
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
-
-## if. using init.groovy.d ##
-COPY init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 
 USER jenkins

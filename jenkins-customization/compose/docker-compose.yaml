@@ -3,7 +3,7 @@ services:
     build:
       context: ..
       dockerfile: docker/dockerifle
-    image: jenkins_docker:v2
+    image: jenkins_custom:v1
     container_name: jenkins_prod
     restart: unless-stopped
 

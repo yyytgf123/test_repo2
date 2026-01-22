@@ -11,6 +11,6 @@ docker-workflow
 credentials
 credentials-binding
 pipeline-stage-view
-aws-codedeploy
+codedeploy
 timestamper
 ansicolor
