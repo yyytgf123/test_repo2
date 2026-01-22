@@ -1,8 +1,8 @@
 jenkins:
   systemMessage: "Groom CI Server"
 
-  numExecutors: 0
-  mode: EXCLUSIVE
+  numExecutors: 3
+  mode: NORMAL
   labelString: "master"
 
   securityRealm:

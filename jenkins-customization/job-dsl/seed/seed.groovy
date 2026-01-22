@@ -1,10 +1,13 @@
 def SEED_JOB_NAME = "seed"
 
-// ✅ 네 레포/브랜치/크레덴셜로 수정
-def REPO_URL = "https://github.com/GroomCloudTeam2/e_commerce_V2.git"
-def BRANCH   = "main"
-def GITHUB_CRED_ID  = "github-token"
+// ✅ DSL을 담고 있는 레포(= Jenkins_Customization)
+def DSL_REPO_URL   = "https://github.com/GroomCloudTeam2/Jenkins_Customization.git"
+def DSL_REPO_BRANCH = "main"
 
+// ✅ Jenkins에 등록된 GitHub PAT 크리덴셜 ID
+def GITHUB_CRED_ID = "github-token"
+
+// Seed Pipeline Job 생성
 pipelineJob(SEED_JOB_NAME) {
     description("Seed job: applies Job DSL scripts under job-dsl/dsl/**")
 
@@ -16,19 +19,22 @@ pipeline {
   agent any
 
   stages {
-    stage('Checkout') {
+    stage('Checkout DSL Repo') {
       steps {
-        git url: '${REPO_URL}', branch: '${BRANCH}', credentialsId: '${GITHUB_CRED_ID}'
+        script {
+          git url: '${DSL_REPO_URL}', branch: '${DSL_REPO_BRANCH}', credentialsId: '${GITHUB_CRED_ID}'
+        }
       }
     }
 
     stage('Apply Job DSL') {
       steps {
         jobDsl(
-          targets: 'job-dsl/dsl/**/*.groovy',
+          targets: 'jenkins-customization/job-dsl/dsl/*.groovy',
+          sandbox: false,
+          lookupStrategy: 'JENKINS_ROOT',
           removedJobAction: 'DELETE',
-          removedViewAction: 'DELETE',
-          sandbox: true
+          removedViewAction: 'DELETE'
         )
       }
     }

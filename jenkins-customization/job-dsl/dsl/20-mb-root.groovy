@@ -1,13 +1,13 @@
 def ROOT_FOLDER = "monorepo"
 
-// ✅ 네 GitHub 정보로 수정
+// ✅ GitHub 정보
 def GITHUB_OWNER   = "GroomCloudTeam2"
-def GITHUB_REPO    = "e_commerce_V2"
+def GITHUB_REPO    = "e_commerce_v2"
 def GITHUB_CRED_ID = "github-token"
 
 multibranchPipelineJob("${ROOT_FOLDER}/mb-root") {
-    displayName("mb-root")
-    description("Root Jenkinsfile multibranch: ${GITHUB_OWNER}/${GITHUB_REPO} -> Jenkinsfile")
+    displayName("e_commerce_v2 (root)")
+    description("Root multibranch: ${GITHUB_OWNER}/${GITHUB_REPO} -> Jenkinsfile")
 
     branchSources {
         branchSource {
@@ -20,8 +20,10 @@ multibranchPipelineJob("${ROOT_FOLDER}/mb-root") {
                 }
             }
             traits {
+                // 브랜치 탐색
                 gitHubBranchDiscovery { strategyId(3) }
-                gitHubPullRequestDiscovery { strategyId(1) }
+                // 필요하면 PR도(플러그인 버전에 따라 DSL 메서드명이 다를 수 있어 주석 처리)
+                // gitHubPullRequestDiscovery { strategyId(1) }
             }
         }
     }
@@ -33,6 +35,13 @@ multibranchPipelineJob("${ROOT_FOLDER}/mb-root") {
     }
 
     orphanedItemStrategy {
-        discardOldItems { numToKeep(20) }
+        discardOldItems {
+            numToKeep(30)
+        }
+    }
+
+    // 웹훅 없으면 주기 스캔 켜두는 게 편함
+    triggers {
+        periodicFolderTrigger { interval("1h") }
     }
 }

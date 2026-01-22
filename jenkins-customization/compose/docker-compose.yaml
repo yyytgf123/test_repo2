@@ -3,13 +3,16 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    image: jenkins_custom:v2
+    image: jenkins_custom:v3
     container_name: jenkins
     restart: unless-stopped
 
     ports:
       - "9090:8080"
       - "50000:50000"
+
+    env_file:
+      - .env
 
     environment:
       - CASC_JENKINS_CONFIG=/var/jenkins_home/casc
