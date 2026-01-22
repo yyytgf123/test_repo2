@@ -3,17 +3,17 @@ def ROOT_FOLDER = "monorepo"
 def SERVICES_FOLDER = "services"
 
 // ✅ GitHub 정보
-def GITHUB_OWNER   = "GroomCloudTeam2"
-def GITHUB_REPO    = "e_commerce_v2"
+def GITHUB_OWNER = "GroomCloudTeam2"
+def GITHUB_REPO = "e_commerce_v2"
 def GITHUB_CRED_ID = "github-token"
 
 // ✅ 네 모노레포 구조에 맞게 Jenkinsfile 위치만 정확히
 def SERVICES = [
-        [job: "mb-user",    display: "user",    scriptPath: "Jenkinsfile"],
-        [job: "mb-order",   display: "order",   scriptPath: "services/order/Jenkinsfile"],
+        [job: "mb-user", display: "user", scriptPath: "Jenkinsfile"],
+        [job: "mb-order", display: "order", scriptPath: "services/order/Jenkinsfile"],
         [job: "mb-payment", display: "payment", scriptPath: "services/payment/Jenkinsfile"],
         [job: "mb-product", display: "product", scriptPath: "services/product/Jenkinsfile"],
-        [job: "mb-review",  display: "review",  scriptPath: "services/review/Jenkinsfile"]
+        [job: "mb-review", display: "review", scriptPath: "services/review/Jenkinsfile"]
 ]
 
 SERVICES.each { svc ->
@@ -31,24 +31,23 @@ SERVICES.each { svc ->
                         credentialsId(GITHUB_CRED_ID)
                         repositoryUrl("https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}")
                         configuredByUrl(false)   // owner/repo 기반으로 쓰겠다
-                        }
                     }
                 }
             }
+        }
 
-            factory {
-                workflowBranchProjectFactory {
-                    scriptPath(svc.scriptPath)
-                }
+        factory {
+            workflowBranchProjectFactory {
+                scriptPath(svc.scriptPath)
             }
+        }
 
-            orphanedItemStrategy {
-                discardOldItems { numToKeep(20) }
-            }
+        orphanedItemStrategy {
+            discardOldItems { numToKeep(20) }
+        }
 
-            triggers {
-                periodicFolderTrigger { interval("1h") }
-            }
+        triggers {
+            periodicFolderTrigger { interval("1h") }
         }
     }
 }
