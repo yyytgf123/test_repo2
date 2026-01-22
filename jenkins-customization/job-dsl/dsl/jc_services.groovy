@@ -1,3 +1,4 @@
+// jc_folders.groovy랑 동일한 파일명
 def ROOT_FOLDER = "monorepo"
 def SERVICES_FOLDER = "services"
 
