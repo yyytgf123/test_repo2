@@ -3,7 +3,7 @@ def SERVICES_FOLDER = "services"
 
 // Jenkins에 Folder Item 생성
 folder(ROOT_FOLDER) {
-    displayName("Monorepo")
+    displayName("tlqkf")
     description("Auto-generated folder for monorepo jobs (Job DSL)")
 }
 

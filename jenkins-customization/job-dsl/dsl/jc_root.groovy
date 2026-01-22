@@ -5,7 +5,7 @@ def GITHUB_OWNER   = "GroomCloudTeam2"
 def GITHUB_REPO    = "e_commerce_v2"
 def GITHUB_CRED_ID = "github-token"
 
-multibranchPipelineJob("${ROOT_FOLDER}/mb-root") {
+multibranchPipelineJob("${ROOT_FOLDER}/jc-root") {
     displayName("e_commerce_v2 (root)")
     description("Root multibranch: ${GITHUB_OWNER}/${GITHUB_REPO} -> Jenkinsfile")
 
@@ -13,13 +13,14 @@ multibranchPipelineJob("${ROOT_FOLDER}/mb-root") {
         branchSource {
             source {
                 github {
-                    id("mb-root-${GITHUB_OWNER}-${GITHUB_REPO}".replaceAll('[^A-Za-z0-9_.-]', '_'))
+                    id("jc-root-${GITHUB_OWNER}-${GITHUB_REPO}".replaceAll('[^A-Za-z0-9_.-]', '_'))
                     repoOwner(GITHUB_OWNER)
                     repository(GITHUB_REPO)
                     credentialsId(GITHUB_CRED_ID)
 
-                    repositoryUrl("https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}.git")
-                    configuredByUrl("https://github.com")
+                    traits {
+                        gitHubBranchDiscovery { strategyId(3) }
+                    }
                 }
             }
         }
