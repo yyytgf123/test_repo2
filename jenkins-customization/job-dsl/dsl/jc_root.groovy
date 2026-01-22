@@ -18,6 +18,9 @@ multibranchPipelineJob("${ROOT_FOLDER}/jc-root") {
                     repository(GITHUB_REPO)
                     credentialsId(GITHUB_CRED_ID)
 
+                    repositoryUrl("https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}")
+                    configuredByUrl(false)   // owner/repo 기반으로 쓰겠다
+
                     traits {
                         gitHubBranchDiscovery { strategyId(3) }
                     }
