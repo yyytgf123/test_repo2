@@ -14,3 +14,4 @@ pipeline-stage-view
 codedeploy
 timestamper
 ansicolor
+aws-credentials

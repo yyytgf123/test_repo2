@@ -2,9 +2,9 @@ services:
   jenkins:
     build:
       context: ..
-      dockerfile: docker/dockerifle
-    image: jenkins_custom:v1
-    container_name: jenkins_prod
+      dockerfile: docker/Dockerfile
+    image: jenkins_custom:v2
+    container_name: jenkins
     restart: unless-stopped
 
     ports:
