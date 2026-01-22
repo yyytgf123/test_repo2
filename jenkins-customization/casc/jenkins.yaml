@@ -1,0 +1,45 @@
+jenkins:
+  systemMessage: "Groom CI Server"
+
+  numExecutors: 0
+  mode: EXCLUSIVE
+  labelString: "master"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          name: "Admin User"
+          password: "1234"   # 실환경에서는 반드시 변경
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  remotingSecurity:
+    enabled: true
+
+  nodes:
+    - permanent:
+        name: "local-agent"
+        labelString: "docker"
+        remoteFS: "/home/jenkins/agent"
+        numExecutors: 2
+        launcher:
+          jnlp:
+            workDirSettings:
+              disabled: false
+              internalDir: "remoting"
+              failIfWorkDirIsMissing: false
+
+unclassified:
+  location:
+    url: "http://localhost:8080/"
+    adminAddress: "ci-admin@groom.com"
+
+tool:
+  git:
+    installations:
+      - name: "Default Git"
+        home: "git"

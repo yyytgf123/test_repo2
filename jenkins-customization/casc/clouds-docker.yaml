@@ -1,0 +1,40 @@
+jenkins:
+  clouds:
+    - docker:
+        name: "docker-cloud"
+        dockerApi:
+          dockerHost:
+            uri: "unix:///var/run/docker.sock"
+
+        templates:
+          # ① Gradle 빌드용 에이전트
+          - name: "gradle-agent"
+            labelString: "gradle"
+            remoteFs: "/home/jenkins"
+            instanceCapStr: "3"     # 동시에 최대 3개
+            mode: EXCLUSIVE
+            retentionStrategy:
+              idleMinutes: 10       # 10분 idle 시 삭제
+            connector:
+              attach:
+                user: "jenkins"
+            dockerTemplateBase:
+              image: "gradle:8.4-jdk17"
+              mounts:
+                - "type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock"
+              environmentsString: |
+                GRADLE_USER_HOME=/home/jenkins/.gradle
+            removeVolumes: true
+
+          # ② Node 빌드용 에이전트 (옵션)
+          - name: "node-agent"
+            labelString: "node"
+            remoteFs: "/home/jenkins"
+            instanceCapStr: "2"
+            retentionStrategy:
+              idleMinutes: 10
+            connector:
+              attach:
+                user: "node"
+            dockerTemplateBase:
+              image: "node:20-alpine"
