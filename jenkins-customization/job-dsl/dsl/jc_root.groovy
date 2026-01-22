@@ -17,13 +17,10 @@ multibranchPipelineJob("${ROOT_FOLDER}/mb-root") {
                     repoOwner(GITHUB_OWNER)
                     repository(GITHUB_REPO)
                     credentialsId(GITHUB_CRED_ID)
+
+                    repositoryUrl("https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}.git")
+                    configuredByUrl("https://github.com")
                 }
-            }
-            traits {
-                // 브랜치 탐색
-                gitHubBranchDiscovery { strategyId(3) }
-                // 필요하면 PR도(플러그인 버전에 따라 DSL 메서드명이 다를 수 있어 주석 처리)
-                // gitHubPullRequestDiscovery { strategyId(1) }
             }
         }
     }
