@@ -31,28 +31,24 @@ SERVICES.each { svc ->
                         credentialsId(GITHUB_CRED_ID)
                         repositoryUrl("https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}")
                         configuredByUrl(false)   // owner/repo 기반으로 쓰겠다
+                        }
                     }
                 }
-                traits {
-                    gitHubBranchDiscovery { strategyId(3) }
-                    // 필요하면 PR도(플러그인/DSL API 차이로 실패하면 주석 유지)
-                    // gitHubPullRequestDiscovery { strategyId(1) }
+            }
+
+            factory {
+                workflowBranchProjectFactory {
+                    scriptPath(svc.scriptPath)
                 }
             }
-        }
 
-        factory {
-            workflowBranchProjectFactory {
-                scriptPath(svc.scriptPath)
+            orphanedItemStrategy {
+                discardOldItems { numToKeep(20) }
             }
-        }
 
-        orphanedItemStrategy {
-            discardOldItems { numToKeep(20) }
-        }
-
-        triggers {
-            periodicFolderTrigger { interval("1h") }
+            triggers {
+                periodicFolderTrigger { interval("1h") }
+            }
         }
     }
 }
