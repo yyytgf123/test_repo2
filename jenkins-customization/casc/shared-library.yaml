@@ -1,0 +1,14 @@
+unclassified:
+  globalLibraries:
+    libraries:
+      - name: "groom-shared-lib"
+        defaultVersion: "main"
+        implicit: true
+        allowVersionOverride: true
+        includeInChangesets: false
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/GroomCloudTeam2/e_commerce_v2.git"
+                credentialsId: "github-token"
