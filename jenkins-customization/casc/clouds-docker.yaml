@@ -19,22 +19,9 @@ jenkins:
               attach:
                 user: "jenkins"
             dockerTemplateBase:
-              image: "gradle:8.4-jdk17"
+              image: "gradle:8.4-jdk17" # 실제 띄울 에이전트의 도커 이미지
               mounts:
                 - "type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock"
               environmentsString: |
                 GRADLE_USER_HOME=/home/jenkins/.gradle
             removeVolumes: true
-
-          # ② Node 빌드용 에이전트 (옵션)
-          - name: "node-agent"
-            labelString: "node"
-            remoteFs: "/home/jenkins"
-            instanceCapStr: "2"
-            retentionStrategy:
-              idleMinutes: 10
-            connector:
-              attach:
-                user: "node"
-            dockerTemplateBase:
-              image: "node:20-alpine"

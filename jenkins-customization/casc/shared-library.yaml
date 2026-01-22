@@ -10,5 +10,5 @@ unclassified:
           modernSCM:
             scm:
               git:
-                remote: "https://github.com/groomcloudteam2/jenkins-shared-lib.git"
+                remote: "https://github.com/GroomCloudTeam2/e_commerce_v2.git"
                 credentialsId: "github-token"

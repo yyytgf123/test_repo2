@@ -10,7 +10,7 @@ jenkins:
       allowsSignup: false
       users:
         - id: "admin"
-          name: "Admin User"
+          name: "Admin"
           password: "1234"   # 실환경에서는 반드시 변경
 
   authorizationStrategy:
@@ -20,23 +20,10 @@ jenkins:
   remotingSecurity:
     enabled: true
 
-  nodes:
-    - permanent:
-        name: "local-agent"
-        labelString: "docker"
-        remoteFS: "/home/jenkins/agent"
-        numExecutors: 2
-        launcher:
-          jnlp:
-            workDirSettings:
-              disabled: false
-              internalDir: "remoting"
-              failIfWorkDirIsMissing: false
-
 unclassified:
   location:
     url: "http://localhost:8080/"
-    adminAddress: "ci-admin@groom.com"
+    adminAddress: "hyunho3445@gmail.com"
 
 tool:
   git:
