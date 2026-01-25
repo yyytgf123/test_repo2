@@ -2,12 +2,14 @@
 def ROOT_FOLDER = "monorepo"
 def SERVICES_FOLDER = "services"
 
-// ✅ GitHub 정보
+// GitHub 정보
 def GITHUB_OWNER = "GroomCloudTeam2"
 def GITHUB_REPO = "e_commerce_v2"
 def GITHUB_CRED_ID = "github-token"
 
-// ✅ 네 모노레포 구조에 맞게 Jenkinsfile 위치만 정확히
+// job : jenkins에서 생성될 Job 이름(식별자)
+// display : jenkins UI에 보이는 표시 이름
+// scriptPath : 해당 멀티브랜치가 "브랜치마다" 찾을 Jenkinsfile 경로
 def SERVICES = [
         [job: "mb-user", display: "user", scriptPath: "Jenkinsfile"],
         [job: "mb-order", display: "order", scriptPath: "services/order/Jenkinsfile"],
@@ -16,11 +18,14 @@ def SERVICES = [
         [job: "mb-review", display: "review", scriptPath: "services/review/Jenkinsfile"]
 ]
 
+// SERVICE 목록을 순회하며 멀티브랜치 Job 생성
+// "${ROOT_FOLDER}/${SERVICES_FOLDER}/${svc.job}" = "monorepo/services/mb-order" 같은 "전체 경로"로 생성됨
 SERVICES.each { svc ->
     multibranchPipelineJob("${ROOT_FOLDER}/${SERVICES_FOLDER}/${svc.job}") {
         displayName(svc.display)
         description("Service multibranch: ${GITHUB_OWNER}/${GITHUB_REPO} -> ${svc.scriptPath}")
 
+        // 이 부분은 "jc_root.groovy"와 동일
         branchSources {
             branchSource {
                 source {

@@ -1,10 +1,10 @@
 def SEED_JOB_NAME = "seed"
 
-// ✅ DSL을 담고 있는 레포(= Jenkins_Customization)
+// DSL을 담고 있는 레포(= Jenkins_Customization)
 def DSL_REPO_URL   = "https://github.com/GroomCloudTeam2/Jenkins_Customization.git"
 def DSL_REPO_BRANCH = "main"
 
-// ✅ Jenkins에 등록된 GitHub PAT 크리덴셜 ID
+// Jenkins에 등록된 GitHub PAT 크리덴셜 ID
 def GITHUB_CRED_ID = "github-token"
 
 // Seed Pipeline Job 생성
