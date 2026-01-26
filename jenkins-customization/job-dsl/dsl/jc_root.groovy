@@ -3,7 +3,7 @@ def ROOT_FOLDER = "monorepo"
 
 // GitHub 정보
 def GITHUB_OWNER   = "GroomCloudTeam2"
-def GITHUB_REPO    = "e_commerce_v2"
+def GITHUB_REPO    = "e_commerce_v3"
 def GITHUB_CRED_ID = "github-token"
 
 // "monorepo/jc-root" 라는 폴더 안에 멀티브랜치 파이프라인 Job(jc-root) 을 만든다는 뜻

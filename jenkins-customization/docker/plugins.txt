@@ -15,3 +15,4 @@ codedeploy
 timestamper
 ansicolor
 aws-credentials
+slack:latest

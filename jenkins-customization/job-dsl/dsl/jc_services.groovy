@@ -4,7 +4,7 @@ def SERVICES_FOLDER = "services"
 
 // GitHub 정보
 def GITHUB_OWNER = "GroomCloudTeam2"
-def GITHUB_REPO = "e_commerce_v2"
+def GITHUB_REPO = "e_commerce_v3"
 def GITHUB_CRED_ID = "github-token"
 
 // job : jenkins에서 생성될 Job 이름(식별자)
