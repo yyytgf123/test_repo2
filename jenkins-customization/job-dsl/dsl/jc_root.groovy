@@ -10,7 +10,7 @@ def GITHUB_CRED_ID = "github-token"
 multibranchPipelineJob("${ROOT_FOLDER}/jc-root") {
 
     // pipeline&folder 명
-    displayName("e_commerce_v2 (root)")
+    displayName("e_commerce_v3 (root)")
     description("Root multibranch: ${GITHUB_OWNER}/${GITHUB_REPO} -> Jenkinsfile")
 
     // 멀티브랜치가 스캔할 "브랜치 소스"를 정의

@@ -12,10 +12,10 @@ def GITHUB_CRED_ID = "github-token"
 // scriptPath : 해당 멀티브랜치가 "브랜치마다" 찾을 Jenkinsfile 경로
 def SERVICES = [
         [job: "mb-user", display: "user", scriptPath: "Jenkinsfile"],
-        [job: "mb-order", display: "order", scriptPath: "services/order/Jenkinsfile"],
-        [job: "mb-payment", display: "payment", scriptPath: "services/payment/Jenkinsfile"],
-        [job: "mb-product", display: "product", scriptPath: "services/product/Jenkinsfile"],
-        [job: "mb-review", display: "review", scriptPath: "services/review/Jenkinsfile"]
+        [job: "mb-order", display: "order", scriptPath: "Jenkinsfile"],
+        [job: "mb-payment", display: "payment", scriptPath: "Jenkinsfile"],
+        [job: "mb-product", display: "product", scriptPath: "Jenkinsfile"],
+        [job: "mb-review", display: "review", scriptPath: "Jenkinsfile"]
 ]
 
 // SERVICE 목록을 순회하며 멀티브랜치 Job 생성
