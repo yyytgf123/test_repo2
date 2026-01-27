@@ -38,7 +38,7 @@ SERVICES.each { svc ->
                         configuredByUrl(false)   // owner/repo 기반으로 쓰겠다
                         traits {
                             gitHubBranchDiscovery { strategyId(3) }
-                            gitHubPullRequestDiscovry { strategyId(1) }
+                            gitHubPullRequestDiscovery { strategyId(1) }
                         }
                     }
                 }
