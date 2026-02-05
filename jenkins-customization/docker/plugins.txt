@@ -6,12 +6,13 @@ git
 github
 github-branch-source
 cloudbees-folder
-docker-plugin
-docker-workflow
 credentials
 credentials-binding
 pipeline-stage-view
-codedeploy
 timestamper
 ansicolor
 aws-credentials
+kubernetes
+build-timeout
+ws-cleanup
+prometheus
