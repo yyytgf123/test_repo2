@@ -8,22 +8,14 @@ services:
     restart: unless-stopped
 
     ports:
-      - "9090:8080"
+      - "8080:8080"
       - "50000:50000"
-
-    env_file:
-      - .env
 
     environment:
       # "CASC_JENKINS_CONFIG"로 적용을 해줘야지 jenkins에서 인식하고 적용
       - CASC_JENKINS_CONFIG=/var/jenkins_home/casc
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
       - TZ=Asia/Seoul
-
-      - SONAR_TOKEN_VALUE=${SONAR_TOKEN_VALUE}
-      - DOCKERHUB_NAME=${DOCKERHUB_NAME}
-      - DOCKERHUB_PASSWORD=${DOCKERHUB_PASSWORD}
-      - GITHUB_TOKEN_VALUE=${GITHUB_TOKEN_VALUE}
 
     volumes:
       - jenkins_home:/var/jenkins_home

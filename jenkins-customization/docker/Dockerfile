@@ -2,11 +2,6 @@ FROM jenkins/jenkins:lts-jdk17
 
 USER root
 
-## Docker Install ##
-RUN apt-get update \
-&& apt-get install -y docker.io \
-&& rm -rf /var/lib/apt/lists/*
-
 ## Basic Util Tools ##
 RUN apt-get update && apt-get install -y --no-install-recommends \
 git curl unzip ca-certificates && rm -rf /var/lib/apt/lists/*
